@@ -1,0 +1,95 @@
+.calendar {
+  width: 50%;
+  font-family: Arial, sans-serif;
+  padding: 1rem;
+}
+
+.calendar > * {
+  line-height: 3.5rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.calendar span {
+  flex-grow: 30;
+  width: calc(100% / 7);
+  text-align: center;
+}
+
+.calendar header span:first-child,
+.calendar header span:last-child{
+  flex-grow: .1;
+  cursor: pointer;
+}
+
+.day-names {
+  display: flex;
+}
+
+.days-in-month {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.days-in-month span {
+  cursor: pointer;
+  position: relative;
+}
+
+.days-in-month i {
+  padding: .8rem;
+  font-style: normal;
+  position: relative;
+  width: 100%;
+}
+
+.days-in-month i.padding-single-digit {
+  padding: .8rem 1.1rem;
+}
+
+.days-in-month span.disabled {
+  color: #ccc;
+  cursor: default;
+}
+
+/** Material style **/
+.material .days-in-month span:hover:not(.disabled) i:not(.selected) {
+  background: #e6d2f1;
+  border-radius: 50%;
+}
+
+.material .days-in-month i.active {
+  border: 2px solid #000;
+  border-radius: 50%;
+  padding: .6rem;
+}
+
+.material .days-in-month i.selected {
+  background: #902dc6;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.material .days-in-month i.has-event:before {
+  content: ' \25CF';
+  font-size: .7rem;
+  position: absolute;
+  top: .4rem;
+  left: 1.18rem;
+  color: #902dc6;
+}
+
+.material .days-in-month i.selected.has-event:before {
+  color: #fff;
+}
+
+.material .days-in-month i.active.has-event:before {
+  top: .1rem;
+  left: 1.1rem;
+}
