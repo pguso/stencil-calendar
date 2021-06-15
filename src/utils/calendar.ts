@@ -91,4 +91,8 @@ export class Calendar {
       year: new Date().getFullYear()
     };
   }
+
+  public static convertNumbersToDate(year, month, day): Date {
+    return new Date(`${year}-${month}-${day}`);
+  }
 }

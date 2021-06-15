@@ -155,6 +155,22 @@ export class MyComponent {
       && !(index < this.fillStartCount || index >= this.fillEndCount);
   }
 
+  disableBeforeToday(day, month, year) {
+    let isDisabled = false;
+    const beforeToday = Calendar.convertNumbersToDate(
+      new Date().getFullYear(),
+      new Date().getMonth() + 1,
+      new Date().getDate()
+    );
+    const givenDate = Calendar.convertNumbersToDate(year, month, day);
+
+    if (givenDate < beforeToday) {
+      isDisabled = true;
+    }
+
+    return isDisabled;
+  }
+
   render() {
     const date = this.getValidDate();
 
@@ -175,7 +191,9 @@ export class MyComponent {
         <div class="days-in-month">
           {this.daysInMonth.map((day, index) => {
             const classNameDigit = this.getDigitClassNames(day, date.month, date.year, index);
-            if (index < this.fillStartCount || index >= this.fillEndCount) {
+            const isDisabled = this.disableBeforeToday(day, date.month, date.year);
+
+            if ((index < this.fillStartCount || index >= this.fillEndCount) || isDisabled) {
               return (
                 <span class="disabled">{this.showFillDays ? day : ''}</span>
               );
